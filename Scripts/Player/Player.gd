@@ -17,9 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var move_vector = Vector2.ZERO
-	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	move_vector.y = -1 if Input.is_action_just_pressed("jump") else 0
+	var move_vector = get_movement_vector()
 	velocity.x += move_vector.x * horizontalAcceleration * delta
 	if (move_vector.x == 0):
 		velocity.x = lerp(0, velocity.x, pow(2, -50 * delta))
@@ -35,4 +33,9 @@ func _process(delta):
 		#accelerate at a rate of 300 pixles per second
 		velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-#	pass
+
+func get_movement_vector():
+	var move_vector = Vector2.ZERO
+	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_vector.y = -1 if Input.is_action_just_pressed("jump") else 0
+	return move_vector;
