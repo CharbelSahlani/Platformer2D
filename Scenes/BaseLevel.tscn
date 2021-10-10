@@ -3,8 +3,8 @@
 [ext_resource path="res://resources/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GameCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Camera/GameCamera.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/EnemyGoal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Spikes.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Gameplay/BaseLevel.gd" type="Script" id=7]
 
@@ -17,16 +17,19 @@ cell_size = Vector2( 18, 18 )
 format = 1
 tile_data = PoolIntArray( -65532, 0, 0, -65531, 0, 2, 2, 0, 0, 3, 0, 1, 4, 0, 65540, 5, 0, 65539, 6, 0, 2, 65537, 0, 0, 65538, 0, 65540, 65539, 0, 65537, 65540, 0, 65537, 65541, 0, 65537, 65542, 0, 65539, 65543, 0, 1, 65544, 0, 2, 196601, 1, 0, 196602, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 0, 0, 131073, 0, 65540, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65537, 131080, 0, 65538, 262135, 0, 0, 262136, 0, 1, 262137, 0, 1, 262138, 0, 1, 262139, 0, 1, 262140, 0, 1, 262141, 0, 1, 262142, 0, 1, 262143, 0, 1, 196608, 0, 65540, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65538, 327671, 0, 131072, 327672, 0, 131073, 327673, 0, 131073, 327674, 0, 131073, 327675, 0, 131073, 327676, 0, 131073, 327677, 0, 131073, 327678, 0, 131073, 327679, 0, 131073, 262144, 0, 131073, 262145, 0, 131073, 262146, 0, 131073, 262147, 0, 131073, 262148, 0, 131073, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131073, 262152, 0, 131074 )
 
-[node name="Player" type="KinematicBody2D" parent="." groups=[
-"player",
-] instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -144, 27 )
-script = ExtResource( 4 )
 
-[node name="GameCamera" type="Camera2D" parent="." instance=ExtResource( 3 )]
-current = true
-script = ExtResource( 5 )
-backgroundColor = Color( 0.87451, 0.964706, 0.960784, 1 )
+[node name="GameCamera" parent="." instance=ExtResource( 3 )]
 
 [node name="Spikes" parent="." instance=ExtResource( 6 )]
 position = Vector2( 63, 0 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 90, -18 )
+
+[node name="EnemyGoal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 63, -18 )
+
+[node name="EnemyGoal2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 117, -18 )
