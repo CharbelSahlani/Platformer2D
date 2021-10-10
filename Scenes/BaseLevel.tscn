@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GameCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Flag.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Gameplay/BaseLevel.gd" type="Script" id=7]
 
 [node name="BaseLevel" type="Node"]
@@ -15,6 +16,10 @@ format = 1
 tile_data = PoolIntArray( 196601, 1, 0, 196602, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0 )
 
 [node name="GameCamera" parent="." instance=ExtResource( 3 )]
+
+[node name="Flag" type="Node" parent="."]
+
+[node name="Flag" parent="Flag" instance=ExtResource( 4 )]
 
 [node name="Enemies" type="Node2D" parent="."]
 
