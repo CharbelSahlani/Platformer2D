@@ -4,6 +4,8 @@ signal died
 
 enum State { NORMAL, DASHING}
 
+export (int, LAYERS_2D_PHYSICS) var dashHazardMask
+
 var gravity = 1000
 var velocity = Vector2.ZERO
 var maxDashSpeed = 500
@@ -15,11 +17,11 @@ var jumpTerminationMultiplier = 4
 var hasDoubleJump = false
 var currentState = State.NORMAL
 var isStateNew = true
-
+var defaultHazardMask = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HazardArea.connect("area_entered", self, "on_hazard_area_entered")
-
+	defaultHazardMask = $HazardArea.collision_mask
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,6 +40,9 @@ func change_state(newState):
 
 
 func process_normal(delta):
+	if (isStateNew):
+		$DashArea/CollisionShape2D.disabled = true
+		$HazardArea.collision_mask = defaultHazardMask
 	var move_vector = get_movement_vector()
 	velocity.x += move_vector.x * horizontalAcceleration * delta
 	if (move_vector.x == 0):
@@ -77,7 +82,9 @@ func process_normal(delta):
 	
 func process_dash(delta):
 	if (isStateNew):
+		$DashArea/CollisionShape2D.disabled = false
 		$AnimatedSprite.play("Jump")
+		$HazardArea.collision_mask = dashHazardMask
 		var moveVector = get_movement_vector()
 		var velocityMod = 1
 		#get the direction of movement in negative or positive
