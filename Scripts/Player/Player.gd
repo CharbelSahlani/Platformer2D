@@ -2,15 +2,19 @@ extends KinematicBody2D
 
 signal died
 
+enum State { NORMAL, DASHING}
+
 var gravity = 1000
 var velocity = Vector2.ZERO
+var maxDashSpeed = 500
+var minDashSpeed = 200
 var maxHorizontalSpeed = 140
 var horizontalAcceleration = 2000
 var jumpSpeed = 360
 var jumpTerminationMultiplier = 4
 var hasDoubleJump = false
-
-
+var currentState = State.NORMAL
+var isStateNew = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +23,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	match currentState:
+		State.NORMAL:
+			process_normal(delta)
+		State.DASHING:
+			process_dash(delta)
+	isStateNew = false
+func change_state(newState):
+	currentState = newState
+	isStateNew = true	
+	
+	
+	
+
+
+func process_normal(delta):
 	var move_vector = get_movement_vector()
 	velocity.x += move_vector.x * horizontalAcceleration * delta
 	if (move_vector.x == 0):
@@ -51,8 +70,31 @@ func _process(delta):
 	#double jump
 	if (is_on_floor()):
 		hasDoubleJump = true
+	if (Input.is_action_just_pressed("Dash")):
+		call_deferred("change_state", State.DASHING)
 		
 	update_animation()
+	
+func process_dash(delta):
+	if (isStateNew):
+		$AnimatedSprite.play("Jump")
+		var moveVector = get_movement_vector()
+		var velocityMod = 1
+		#get the direction of movement in negative or positive
+		#to be able to dash to left and dash to the right
+		if (moveVector.x != 0):
+			velocityMod = sign(moveVector.x)
+		else:
+			velocityMod = 1 if $AnimatedSprite.flip_h else -1
+			
+		velocity = Vector2(maxDashSpeed * velocityMod, 0)
+		
+	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity.x = lerp(0, velocity.x, pow(2, -10 * delta))
+	
+	if (abs(velocity.x) < minDashSpeed):
+		call_deferred("change_state", State.NORMAL)
+	
 	
 #to get the movement vector of the player	
 func get_movement_vector():
