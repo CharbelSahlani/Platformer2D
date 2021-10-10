@@ -77,7 +77,6 @@ animations = [ {
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 anims/Idle = SubResource( 3 )
 anims/PickUp = SubResource( 4 )
 
@@ -89,8 +88,6 @@ collision_mask = 524288
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -20 )
-scale = Vector2( 1e-05, 1e-05 )
 frames = SubResource( 1 )
 frame = 1
 playing = true
