@@ -32,8 +32,8 @@ position = Vector2( 387, -36 )
 [node name="EnemyGoal6" parent="Enemy Goals" index="5" instance=ExtResource( 4 )]
 position = Vector2( 522, -36 )
 
-[node name="Flag" parent="Flag" index="0"]
-position = Vector2( 99, 0 )
+[node name="Flag" parent="." index="4"]
+position = Vector2( 126, 0 )
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource( 3 )]
 position = Vector2( -234, -63 )

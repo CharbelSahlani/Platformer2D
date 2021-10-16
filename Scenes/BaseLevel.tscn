@@ -22,9 +22,7 @@ tile_data = PoolIntArray( 196601, 1, 0, 196602, 1, 0, 196603, 1, 0, 196604, 1, 0
 
 [node name="GameCamera" parent="." instance=ExtResource( 3 )]
 
-[node name="Flag" type="Node" parent="."]
-
-[node name="Flag" parent="Flag" instance=ExtResource( 4 )]
+[node name="Flag" parent="." instance=ExtResource( 4 )]
 
 [node name="Enemies" type="Node2D" parent="."]
 
