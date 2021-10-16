@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resources/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GameCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Flag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/LevelUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Gameplay/BaseLevel.gd" type="Script" id=7]
 
-[node name="BaseLevel" type="Node"]
+[node name="BaseLevel" type="Node" groups=[
+"base_level",
+]]
 script = ExtResource( 7 )
+
+[node name="LevelUI" parent="." instance=ExtResource( 5 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
