@@ -57,6 +57,7 @@ func process_normal(delta):
 		velocity.y = move_vector.y * jumpSpeed
 		#to treat the coyote jump as a regular jump and allow the player to double jump
 		if (!is_on_floor() && $CoyoteTimer.is_stopped()):
+			$"/root/Helpers".apply_camera_shake(.75)
 			hasDoubleJump = false
 		$CoyoteTimer.stop()
 		
@@ -86,6 +87,7 @@ func process_normal(delta):
 	
 func process_dash(delta):
 	if (isStateNew):
+		$"/root/Helpers".apply_camera_shake(.75)
 		$DashArea/CollisionShape2D.disabled = false
 		$AnimatedSprite.play("Jump")
 		$HazardArea.collision_mask = dashHazardMask
@@ -128,5 +130,6 @@ func update_animation():
 		$AnimatedSprite.flip_h = true if moveVec.x > 0 else false
 
 func on_hazard_area_entered(area2d):
+	$"/root/Helpers".apply_camera_shake(1)
 	emit_signal("died")
 	
