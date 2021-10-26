@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal died
 
-var playerDeathScene = preload("res://Scenes/Player.tscn")
+var playerDeathScene = preload("res://Scenes/PlayerDeath.tscn")
 
 enum State { NORMAL, DASHING}
 
@@ -137,9 +137,9 @@ func kill():
 		return
 	isDying = true
 	var playerDeathInstance = playerDeathScene.instance()
+	playerDeathInstance.velocity = velocity;
 	get_parent().add_child_below_node(self, playerDeathInstance)
 	playerDeathInstance.global_position = global_position
-	playerDeathInstance.velocity = velocity;
 	emit_signal("died")
 
 func on_hazard_area_entered(area2d):

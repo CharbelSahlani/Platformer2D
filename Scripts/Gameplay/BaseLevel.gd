@@ -31,13 +31,13 @@ func register_player(player):
 	
 func create_player():
 	var playerInstance = playerScene.instance()
-	$PlayerRoot/Player.add_child(playerInstance)
+	$PlayerRoot.add_child(playerInstance)
 	playerInstance.global_position = spawnPosition
 	register_player(playerInstance)
 
 func on_player_died():
 	currentPlayerNode.queue_free()
-	var timer = get_tree().create_timer(1)
+	var timer = get_tree().create_timer(1.5)
 	yield (timer, "timeout")
 	
 	create_player()
