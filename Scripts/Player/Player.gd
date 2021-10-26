@@ -20,6 +20,7 @@ var hasDoubleJump = false
 var hasDash = false
 var currentState = State.NORMAL
 var isStateNew = true
+var isDying = false
 var defaultHazardMask = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -132,6 +133,9 @@ func update_animation():
 		$AnimatedSprite.flip_h = true if moveVec.x > 0 else false
 
 func kill():
+	if (isDying):
+		return
+	isDying = true
 	var playerDeathInstance = playerDeathScene.instance()
 	get_parent().add_child_below_node(self, playerDeathInstance)
 	playerDeathInstance.global_position = global_position
