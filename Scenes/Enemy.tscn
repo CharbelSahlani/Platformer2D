@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Enemy/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Enemy/character_0017.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "Default"
 length = 0.1
 tracks/0/type = "value"
@@ -57,7 +57,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Spawn"
 length = 0.75
 step = 0.05
@@ -110,13 +110,13 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
@@ -129,10 +129,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=6]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=7]
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 0
@@ -140,27 +140,27 @@ script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Spawn"
-anims/Default = SubResource( 7 )
-anims/Spawn = SubResource( 6 )
+anims/Default = SubResource( 1 )
+anims/Spawn = SubResource( 2 )
 next/Spawn = "Default"
 
 [node name="GoalDetector" type="Area2D" parent="."]
 position = Vector2( 0, -6 )
-collision_layer = 131072
+collision_layer = 0
 collision_mask = 131072
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalDetector"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Visuals" type="Node2D" parent="."]
 scale = Vector2( 1e-05, 1e-05 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Visuals"]
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 animation = "Spawn"
 playing = true
 offset = Vector2( 0, -12 )
@@ -171,7 +171,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
 position = Vector2( 0, -5 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 disabled = true
 
 [node name="HitBoxArea" type="Area2D" parent="."]
@@ -180,5 +180,5 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxArea"]
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 disabled = true
