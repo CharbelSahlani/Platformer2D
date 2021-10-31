@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/UI/LevelComplete.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Gameplay/BaseLevel.gd" type="Script" id=7]
 [ext_resource path="res://resources/decorativeTileset.tres" type="TileSet" id=8]
+[ext_resource path="res://Scenes/Cloud.tscn" type="PackedScene" id=9]
 
 [node name="BaseLevel" type="Node" groups=[
 "base_level",
@@ -16,6 +17,10 @@ script = ExtResource( 7 )
 levelCompleteScene = ExtResource( 6 )
 
 [node name="LevelUI" parent="." instance=ExtResource( 5 )]
+
+[node name="GameCamera" parent="." instance=ExtResource( 3 )]
+
+[node name="Cloud" parent="GameCamera" instance=ExtResource( 9 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -31,8 +36,6 @@ format = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 18, 18 )
 format = 1
-
-[node name="GameCamera" parent="." instance=ExtResource( 3 )]
 
 [node name="Flag" parent="." instance=ExtResource( 4 )]
 
