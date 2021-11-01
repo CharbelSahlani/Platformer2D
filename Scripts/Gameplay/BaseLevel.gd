@@ -4,6 +4,7 @@ signal coin_total_changed
 export (PackedScene) var levelCompleteScene
 
 var playerScene = preload("res://Scenes/Player.tscn")
+var pauseScene = preload ("res://Scenes/UI/PauseMenu.tscn")
 var spawnPosition = Vector2.ZERO
 var currentPlayerNode = null
 var totalCoins = 0
@@ -16,6 +17,15 @@ func _ready():
 	coin_total_changed(get_tree().get_nodes_in_group("coin").size())
 	$Flag.connect("player_won", self, "on_player_won")
 		
+#if there's an unhandled input it gets configured here
+func _unhandled_input(event):
+	if (event.is_action_pressed("Pause")):
+		var pauseInstance = pauseScene.instance()
+		add_child(pauseInstance)
+	
+	
+	
+	
 func coin_collected():
 	collectedCoins += 1	
 	emit_signal("coin_total_changed", totalCoins, collectedCoins)
