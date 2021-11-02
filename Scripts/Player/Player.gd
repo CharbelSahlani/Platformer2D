@@ -5,7 +5,7 @@ signal died
 var playerDeathScene = preload("res://Scenes/PlayerDeath.tscn")
 var footstepParticles = preload("res://Scenes/FootstepParticles.tscn")
 
-enum State { NORMAL, DASHING}
+enum State { NORMAL, DASHING, INPUT_DISABLED}
 
 export (int, LAYERS_2D_PHYSICS) var dashHazardMask
 
@@ -36,6 +36,8 @@ func _process(delta):
 			process_normal(delta)
 		State.DASHING:
 			process_dash(delta)
+		State.INPUT_DISABLED:
+			process_input_disabled(delta)
 	isStateNew = false
 func change_state(newState):
 	currentState = newState
@@ -118,6 +120,13 @@ func process_dash(delta):
 	if (abs(velocity.x) < minDashSpeed):
 		call_deferred("change_state", State.NORMAL)
 	
+
+func process_input_disabled(delta):
+	if (isStateNew):
+		$AnimatedSprite.play("Idle")
+	velocity.x = lerp(0, velocity.x, pow(2, -50 * delta))
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
 #to get the movement vector of the player	
 func get_movement_vector():
@@ -159,6 +168,9 @@ func on_hazard_area_entered(area2d):
 	$"/root/Helpers".apply_camera_shake(1)
 	call_deferred("kill")
 	
+func disable_player_input():
+	change_state(State.INPUT_DISABLED)
+
 func on_animated_sprite_frame_changed():
 	if ($AnimatedSprite.animation == "Run" && $AnimatedSprite.frame == 0):
 		spawn_footsteps()
