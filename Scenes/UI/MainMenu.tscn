@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/UI/MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/MenuBackground.tscn" type="PackedScene" id=4]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Default"
 length = 0.4
 tracks/0/type = "value"
@@ -26,7 +26,7 @@ script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Default"
-anims/Default = SubResource( 2 )
+anims/Default = SubResource( 1 )
 
 [node name="MenuBackground" parent="." instance=ExtResource( 4 )]
 
