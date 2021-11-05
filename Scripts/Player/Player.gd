@@ -163,7 +163,8 @@ func spawn_footsteps(scale = 1):
 	get_parent().add_child(footstep)
 	footstep.scale = Vector2.ONE * scale
 	footstep.global_position = global_position
-
+	$FootstepAudioPlayer.play()
+	
 func on_hazard_area_entered(area2d):
 	$"/root/Helpers".apply_camera_shake(1)
 	call_deferred("kill")

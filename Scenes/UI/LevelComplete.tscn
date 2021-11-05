@@ -15,10 +15,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1e-05, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1e-05, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 0.9, 0.9 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 0.9, 0.9 ) ]
 }
 
 [node name="LevelComplete" type="CanvasLayer"]
@@ -40,6 +40,7 @@ margin_left = 176.0
 margin_top = 80.0
 margin_right = 304.0
 margin_bottom = 190.0
+rect_scale = Vector2( 0.9, 0.9 )
 rect_pivot_offset = Vector2( 64, 55 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
