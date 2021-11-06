@@ -1,5 +1,5 @@
 extends Button
-
+export(bool) var disableHoverAnim
 func _ready():
 	connect("mouse_entered", self, "on_mouse_entered")
 	connect("mouse_exited", self, "on_mouse_exited")
@@ -10,10 +10,12 @@ func _process(delta):
 	rect_pivot_offset = rect_min_size / 2
 	
 func on_mouse_entered():
-	$HoverAnimationPlayer.play("Hover")
+	if(!disableHoverAnim):
+		$HoverAnimationPlayer.play("Hover")
 	
 func on_mouse_exited():
-	$HoverAnimationPlayer.play_backwards("Hover")
+	if(!disableHoverAnim):
+		$HoverAnimationPlayer.play_backwards("Hover")
 
 func on_pressed():
 	$AudioStreamPlayer.play()
