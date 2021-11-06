@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/jingles_PIZZI10.ogg-76e4f39c954095c263cb2d4d76fc6a02.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/curated_sounds/jingles_PIZZI10.ogg"
+dest_files=[ "res://.import/jingles_PIZZI10.ogg-76e4f39c954095c263cb2d4d76fc6a02.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

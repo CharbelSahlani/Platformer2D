@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/UI/Button.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/curated_sounds/click_002.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -32,7 +33,7 @@ tracks/1/keys = {
 "values": [ Vector2( 96, 24 ), Vector2( 112, 24 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Click"
 length = 0.3
 tracks/0/type = "value"
@@ -66,4 +67,8 @@ __meta__ = {
 anims/Hover = SubResource( 1 )
 
 [node name="ClickAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Click = SubResource( 3 )
+anims/Click = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
